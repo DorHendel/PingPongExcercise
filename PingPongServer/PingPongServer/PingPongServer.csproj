@@ -43,8 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IBinder.cs" />
+    <Compile Include="Abstractions\IClientReplier.cs" />
+    <Compile Include="Abstractions\IConnectable.cs" />
+    <Compile Include="Abstractions\IListener.cs" />
+    <Compile Include="Abstractions\IStreamerIO.cs" />
+    <Compile Include="Abstractions\ServerBase.cs" />
+    <Compile Include="Implamentations\ClientReplier.cs" />
+    <Compile Include="Implamentations\SocketIO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Implamentations\SocketServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

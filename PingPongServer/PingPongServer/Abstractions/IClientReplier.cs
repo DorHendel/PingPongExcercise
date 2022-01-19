@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PingPongServer.Abstractions
 {
-    public interface IBinder
+    public interface IClientReplier
     {
-        Task Bind();
+        void Run();
     }
 }

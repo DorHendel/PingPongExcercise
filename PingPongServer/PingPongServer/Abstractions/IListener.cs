@@ -8,7 +8,7 @@ namespace PingPongServer.Abstractions
 {
     public interface IListener
     {
-        Task Listen(int clientNum);
-        Task Accept();
+        Task Listen();
+        Task<IStreamerIO> Accept();
     }
 }
