@@ -17,16 +17,16 @@ namespace PingPongServer.Implamentations
             _socket = socket;
         }
 
-        public string Read()
+        public Task<string> Read()
         {
             byte[] buffer = new byte[1024];
             _socket.Receive(buffer);
-            return Encoding.ASCII.GetString(buffer);
+            return new Task<string>(()=> Encoding.ASCII.GetString(buffer));
         }
 
-        public void Write(string message)
+        public Task Write(string message)
         {
-            _socket.Send(Encoding.ASCII.GetBytes(message));
+            return new Task(()=>_socket.Send(Encoding.ASCII.GetBytes(message)));
         }
     }
 }

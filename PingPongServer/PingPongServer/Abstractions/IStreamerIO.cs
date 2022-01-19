@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PingPongServer.Abstractions
 {
-    class IStreamer
+    public interface IStreamerIO
     {
+        Task Write(string message);
+        Task<string> Read();
     }
 }
