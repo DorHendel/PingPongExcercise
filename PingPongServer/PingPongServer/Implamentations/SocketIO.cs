@@ -11,6 +11,12 @@ namespace PingPongServer.Implamentations
     class SocketIO : IStreamerIO
     {
         Socket _socket;
+
+        public SocketIO(Socket socket)
+        {
+            _socket = socket;
+        }
+
         public string Read()
         {
             byte[] buffer = new byte[1024];
