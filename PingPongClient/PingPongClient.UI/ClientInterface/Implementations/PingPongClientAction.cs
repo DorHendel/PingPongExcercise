@@ -14,6 +14,7 @@ namespace PingPongClient.UI.ClientInterface.Implementations
         IServerCommunicator _communicator;
         IInput _input;
         IOutput _output;
+        private int _bufferLength;
 
         public PingPongClientAction(IServerCommunicator communicator, IInput input, IOutput output)
         {
@@ -29,8 +30,9 @@ namespace PingPongClient.UI.ClientInterface.Implementations
                 _output.WriteLine("Enter Message: ");
                 string message = _input.ReadLine();
                 _communicator.Send(Encoding.ASCII.GetBytes(message));
-                string reply = Encoding.ASCII.GetString(_communicator.Recieve());
-                _output.WriteLine("reply - " + reply);
+                byte[] buffer = new byte[_bufferLength];
+                string reply = Encoding.ASCII.GetString(_communicator.Recieve(buffer));
+                _output.WriteLine("Reply - " + reply);
                 _communicator.Close();
             }
             else
