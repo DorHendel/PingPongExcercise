@@ -7,8 +7,13 @@ namespace PingPongServer
     {
         static void Main(string[] args)
         {
+            int portNumber;
+            if (!int.TryParse(args[0], out portNumber))
+            {
+                portNumber = 10000;
+            }
             Bootstrapper bootstrapper = new Bootstrapper();
-            var clientReplier = bootstrapper.GetClientReplier();
+            var clientReplier = bootstrapper.GetClientReplier(portNumber);
             CancellationTokenSource tokenSource = new CancellationTokenSource();
 
             clientReplier.Run(tokenSource.Token);

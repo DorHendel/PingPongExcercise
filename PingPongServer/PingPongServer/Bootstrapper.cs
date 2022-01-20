@@ -13,10 +13,10 @@ namespace PingPongServer
 {
     public class Bootstrapper
     {
-        public IClientReplier GetClientReplier()
+        public IClientReplier GetClientReplier(int portNumber)
         {
             IPAddress iPAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0];
-            var server = new SocketServer(new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp), new IPEndPoint(iPAddress,10000), 10);
+            var server = new SocketServer(new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp), new IPEndPoint(iPAddress, portNumber), 10);
             var clientReplier = new ClientReplier(server, new ConsoleWriter());
             return clientReplier;
         }
