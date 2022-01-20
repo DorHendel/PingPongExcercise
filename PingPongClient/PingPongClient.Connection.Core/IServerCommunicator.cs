@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PingPongClient.Connection.Core
+﻿namespace PingPongClient.Connection.Core
 {
     public interface IServerCommunicator
     {
