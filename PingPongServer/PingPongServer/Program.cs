@@ -1,4 +1,7 @@
-﻿namespace PingPongServer
+﻿using System;
+using System.Threading;
+
+namespace PingPongServer
 {
     class Program
     {
@@ -6,7 +9,12 @@
         {
             Bootstrapper bootstrapper = new Bootstrapper();
             var clientReplier = bootstrapper.GetClientReplier();
-            clientReplier.Run();
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+
+            clientReplier.Run(tokenSource.Token);
+            Console.ReadKey();
+            tokenSource.Cancel();
+            Console.ReadKey();
         }
     }
 }
