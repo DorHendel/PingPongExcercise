@@ -1,7 +1,10 @@
-﻿namespace PingPongServer.Abstractions
+﻿using System.Threading.Tasks;
+using System.Threading;
+
+namespace PingPongServer.Abstractions
 {
     public interface IClientReplier
     {
-        void Run();
+        void Run(CancellationToken token);
     }
 }
