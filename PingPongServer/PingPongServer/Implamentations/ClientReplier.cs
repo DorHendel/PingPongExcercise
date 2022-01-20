@@ -18,7 +18,7 @@ namespace PingPongServer.Implamentations
             _output = output;
         }
 
-        public async void Run(CancellationToken token)
+        public async Task Run(CancellationToken token)
         {
             while (!token.IsCancellationRequested)
             {

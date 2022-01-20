@@ -49,14 +49,19 @@
     <Compile Include="Abstractions\IListener.cs" />
     <Compile Include="Abstractions\IStreamerIO.cs" />
     <Compile Include="Abstractions\ServerBase.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Exceptions\DisconnectedException.cs" />
     <Compile Include="Implamentations\ClientReplier.cs" />
     <Compile Include="Implamentations\SocketIO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implamentations\SocketServer.cs" />
+    <Compile Include="UIIO\Abstractions\IOutput.cs" />
+    <Compile Include="UIIO\Implementations\ConsoleWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

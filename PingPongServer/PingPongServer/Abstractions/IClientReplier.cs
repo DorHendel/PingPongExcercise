@@ -5,6 +5,6 @@ namespace PingPongServer.Abstractions
 {
     public interface IClientReplier
     {
-        void Run(CancellationToken token);
+        Task Run(CancellationToken token);
     }
 }
