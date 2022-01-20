@@ -13,6 +13,13 @@ namespace PingPongServer
         private IPEndPoint _iPEndPoint;
         private int _maxClientNum;
 
+        public SocketServer(Socket socket, IPEndPoint iPEndPoint, int maxClientNum)
+        {
+            _socket = socket;
+            _iPEndPoint = iPEndPoint;
+            _maxClientNum = maxClientNum;
+        }
+
         public override Task<IStreamerIO> Accept()
         {
             return new Task<IStreamerIO>(()=> new SocketIO(_socket.Accept()));
