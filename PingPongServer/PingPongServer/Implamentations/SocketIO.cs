@@ -33,9 +33,15 @@ namespace PingPongServer.Implamentations
                 {
                     throw new DisconnectedException();
                 }
-                    byte[] buffer = new byte[1024];
-                    _socket.Receive(buffer);
-                    return new Task<string>(() => Encoding.ASCII.GetString(buffer));
+                byte[] buffer = new byte[1024];
+                
+                    return Task<string>.Run(() =>
+                    {
+                        int length = _socket.Receive(buffer);
+                        Array.Resize(ref buffer, length);
+                        string message = Encoding.ASCII.GetString(buffer);
+                        return message;
+                    });
             }
             catch (DisconnectedException)
             {
@@ -53,7 +59,7 @@ namespace PingPongServer.Implamentations
                     throw new DisconnectedException();
                 }
 
-                return new Task(() => _socket.Send(Encoding.ASCII.GetBytes(message)));
+                return Task.Run(() => _socket.Send(Encoding.ASCII.GetBytes(message)));
 
             }
             catch (DisconnectedException)

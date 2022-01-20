@@ -43,11 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="ClientInterface\Abstractions\IClientAction.cs" />
+    <Compile Include="ClientInterface\Implementations\PingPongClientAction.cs" />
+    <Compile Include="IO\Abstractions\IInput.cs" />
+    <Compile Include="IO\Abstractions\IOutput.cs" />
+    <Compile Include="IO\Implementations\ConsoleReader.cs" />
+    <Compile Include="IO\Implementations\ConsoleWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PingPongClient.Connection.Core\PingPongClient.Connection.Core.csproj">
+      <Project>{72235f54-6b5c-476a-b28b-01e4a42512b0}</Project>
+      <Name>PingPongClient.Connection.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PingPongConnection\PingPongConnection.csproj">
+      <Project>{9cea4789-3b06-410b-9c1a-038359231b83}</Project>
+      <Name>PingPongConnection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

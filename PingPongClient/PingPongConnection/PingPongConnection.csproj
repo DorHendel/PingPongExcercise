@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PingPongClient.Connection.Core\PingPongClient.Connection.Core.csproj" />
+  </ItemGroup>
+
 </Project>

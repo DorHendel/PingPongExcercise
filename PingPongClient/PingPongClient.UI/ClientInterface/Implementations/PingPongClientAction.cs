@@ -11,16 +11,17 @@ namespace PingPongClient.UI.ClientInterface.Implementations
 {
     public class PingPongClientAction : IClientAction
     {
-        IServerCommunicator _communicator;
-        IInput _input;
-        IOutput _output;
+        private IServerCommunicator _communicator;
+        private IInput _input;
+        private IOutput _output;
         private int _bufferLength;
 
-        public PingPongClientAction(IServerCommunicator communicator, IInput input, IOutput output)
+        public PingPongClientAction(IServerCommunicator communicator, IInput input, IOutput output, int messageMaxLength)
         {
             _communicator = communicator;
             _input = input;
             _output = output;
+            _bufferLength = messageMaxLength;
         }
 
         public void Action()

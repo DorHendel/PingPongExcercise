@@ -1,12 +1,26 @@
-﻿using System;
+﻿using PingPongClient.UI.ClientInterface.Abstractions;
+using PingPongClient.UI.ClientInterface.Implementations;
+using PingPongClient.UI.IO.Implementations;
+using PingPongConnection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PingPongClient.UI
 {
-    class Bootstrapper
+    public class Bootstrapper
     {
+        public IClientAction GetClientAction()
+        {
+            IPAddress iPAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0];
+            var serverComm = new SocketServerCommunicator(new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp),
+                new IPEndPoint(iPAddress, 10000));
+            var clientAction = new PingPongClientAction(serverComm, new ConsoleReader(), new ConsoleWriter(), 1024);
+            return clientAction;
+        }
     }
 }

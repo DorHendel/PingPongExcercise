@@ -22,17 +22,19 @@ namespace PingPongServer
 
         public override Task<IStreamerIO> Accept()
         {
-            return new Task<IStreamerIO>(()=> new SocketIO(_socket.Accept()));
+            var accept = new Task<IStreamerIO>(()=> new SocketIO(_socket.Accept()));
+            accept.Start();
+            return accept;
         }
 
         public override Task Bind()
         {
-            return new Task(()=> _socket.Bind(_iPEndPoint));
+            return Task.Run(()=> _socket.Bind(_iPEndPoint));
         }
 
         public override Task Close()
         {
-            return new Task(() => 
+            return Task.Run(() => 
             {
                 _socket.Shutdown(SocketShutdown.Both);
                 _socket.Close();
@@ -42,7 +44,7 @@ namespace PingPongServer
 
         public override Task Listen()
         {
-            return new Task(() => _socket.Listen(_maxClientNum));
+            return Task.Run(() => _socket.Listen(_maxClientNum));
         }
     }
 }

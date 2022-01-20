@@ -20,10 +20,11 @@ namespace PingPongServer.Implamentations
 
         public async Task Run(CancellationToken token)
         {
+            await _server.Bind();
             while (!token.IsCancellationRequested)
             {
-                await _server.Listen();
                 _output.WriteLine("Awaiting Connection");
+                await _server.Listen();
                 IStreamerIO streamer = await _server.Accept();
                 _output.WriteLine("Found connection");
                 StreamerReply(streamer, token);
@@ -36,17 +37,14 @@ namespace PingPongServer.Implamentations
         {
             try
             {
-                while (!token.IsCancellationRequested)
-                {
                     string message = await streamer.Read();
                     _output.WriteLine("Recieved message : " + message);
                     await streamer.Write(message);
                     _output.WriteLine("Sent back message : " + message);
-                    await Task.Delay(500);
-                }
+                    
                 await streamer.Close();
             }
-            catch(DisconnectedException)
+            catch (DisconnectedException)
             {
                 _output.WriteLine("Client Disconnected");
             }

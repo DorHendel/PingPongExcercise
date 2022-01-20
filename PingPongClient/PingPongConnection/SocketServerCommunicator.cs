@@ -24,7 +24,8 @@ namespace PingPongConnection
 
         public byte[] Recieve(byte[] buffer)
         {
-            _socket.Receive(buffer);
+            int length = _socket.Receive(buffer);
+            Array.Resize(ref buffer, length);
             return buffer;
         }
 
