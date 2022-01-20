@@ -6,5 +6,6 @@ namespace PingPongServer.Abstractions
     {
         Task Write(string message);
         Task<string> Read();
+        Task Close();
     }
 }
